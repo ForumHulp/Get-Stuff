@@ -1,0 +1,56 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>Get stuff</h1>
+
+<p>{L_ACP_GET_STUFF_EXPLAIN}</p>
+<!-- BEGIN user -->
+    <div>
+    {user.TEXT}
+    <table class="table1 zebra-table">
+    <tr>
+        <th>{user.FIELD}</th>
+    </tr>
+    <!-- BEGIN users -->
+        <tr>
+            <td valign="top">{users.FIELDS}</td>
+        </tr>
+    <!-- END users -->
+    </table>
+    </div>
+<!-- END user -->
+<br />
+<form id="poll_select" method="post" action="">
+{L_POLL_TEXT}: <select id="poll" name="poll" onchange="if (this.options[this.selectedIndex].value != '') this.form.submit();"><option value="0">-----</option><!-- BEGIN polls --><option value="{polls.ID}"{polls.SELECTED}>{polls.TEXT}</option><!-- END polls --></select>
+<input type="hidden" name="mode" value="index" />
+</form>
+<br />
+<!-- BEGIN record -->
+    <div style="float:left;margin-left:3px; margin-right:3px;">
+    {record.TEXT}
+    <table class="table1 zebra-table">
+    <tr>
+        <th>{record.FIELD}</th>
+    </tr>
+        <!-- BEGIN records -->
+        <tr>
+        	<td valign="top">
+            <!-- IF records.POLDATA -->
+            <div id="container" style="width:340px;height:150px;">Chart</div>
+            <script  type="text/javascript">
+			var dataserie = [{records.POLDATA}];  //[['Super', 0.3], ['Goed', 0.6], ['Gaat wel', 0.1]];
+			</script>
+            <!-- INCLUDEJS assets/highcharts.js -->
+            <!-- INCLUDEJS assets/get_stuff.js -->
+            <!-- ELSE -->
+            {records.FIELDS}
+            <!-- ENDIF -->
+            </td>
+        </tr>
+    <!-- END records -->
+    </table>
+    </div>
+<!-- END record -->
+
+<!-- INCLUDE overall_footer.html -->
