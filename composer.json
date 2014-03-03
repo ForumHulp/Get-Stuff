@@ -1,7 +1,7 @@
 {
     "name": "forumhulp/get_stuff",
     "type": "phpbb-extension",
-    "description": "A versatile database management plugin for your ACP.",
+    "description": "Shows a summary of user and polls.",
     "homepage": "http://forumhulp.com/",
     "version": "3.1.0",
     "time": "2014-03-01",
