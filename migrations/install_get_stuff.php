@@ -30,7 +30,8 @@ class install_get_stuff extends \phpbb\db\migration\migration
 				array(
 					'module_basename'	=> '\forumhulp\get_stuff\acp\get_stuff_module',
 					'module_langname'	=> 'ACP_GET_STUFF',
-					'module_mode'		=> 'index'
+					'module_mode'		=> 'index',
+					'module_auth'		=> 'acl_a_board',
 				)
 			)),
 
