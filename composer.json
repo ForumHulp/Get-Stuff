@@ -4,6 +4,7 @@
     "description": "Shows a summary of user and polls.",
     "homepage": "http://forumhulp.com/",
     "version": "3.1.0",
+	"keywords": ["forumhulp", "phpbb", "extension", "pm", "pb"],
     "time": "2014-03-01",
     "license": "GPL-2.0",
     "authors": [
@@ -19,6 +20,9 @@
     },
     "extra": {
         "display-name": "Get Stuff",
+		"soft-require": {
+           "phpbb/phpbb": "3.1.*@dev"
+        },
 		"version-check": {
 			"host": "forumhulp.com",
 			"directory": "/ext",
