@@ -21,7 +21,7 @@ class get_stuff_info
 			'filename'	=> '\forumhulp\getstuff\acp\get_stuff_module',
 			'title'		=> 'ACP_GET_STUFF',
 			'version'	=> '3.1.0',
-            'modes'     => array('index' => array('title' => 'ACP_GET_STUFF', 'auth' => 'acl_a_board', 'cat' => array('ACP_FORUM_LOGS')),
+			'modes'     => array('index' => array('title' => 'ACP_GET_STUFF', 'auth' => 'acl_a_board', 'cat' => array('ACP_FORUM_LOGS')),
 			),
 		);
 	}

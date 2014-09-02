@@ -40,8 +40,8 @@ class get_stuff_module
 		$result = $db->sql_query($sql);
 		$row = $db->sql_fetchrow($result);
 		$template->assign_block_vars('user.users', array(
-			'FIELDS'	=> $row['totalusers'] . '</td><td  valign="top">' . str_replace('<br />,' , '<br />', 
-						   $row['newuser']) . '</td><td  valign="top">' . str_replace('<br />,' , '<br />', $row['usersameip'])
+			'FIELDS'	=> $row['totalusers'] . '</td><td  valign="top">' . str_replace('<br />,' , '<br />',
+							$row['newuser']) . '</td><td  valign="top">' . str_replace('<br />,' , '<br />', $row['usersameip'])
 			)
 		);		
 
@@ -72,14 +72,14 @@ class get_stuff_module
 
 		if ($poll_id)
 		{
-			$text_aray = array(0 => $user->lang['GS_IPSORT'], 
-							   1 => $user->lang['GS_OPTIONSORT'], 
-							   2 => $user->lang['GS_GRAPH'],
-							   3 => $user->lang['GS_NAMESORT'], 
-							   4 => $user->lang['GS_RESULT'], 
-							   5 => $user->lang['GS_TOTALMSG'], 
-							   6 => $user->lang['GS_WRITEBY'] . ' ' . $user->data['username'], 
-							   7 => $user->lang['GS_WRITETO'] . ' ' . $user->data['username']);
+			$text_aray = array(0 => $user->lang['GS_IPSORT'],
+								1 => $user->lang['GS_OPTIONSORT'],
+								2 => $user->lang['GS_GRAPH'],
+								3 => $user->lang['GS_NAMESORT'],
+								4 => $user->lang['GS_RESULT'],
+								5 => $user->lang['GS_TOTALMSG'],
+								6 => $user->lang['GS_WRITEBY'] . ' ' . $user->data['username'],
+								7 => $user->lang['GS_WRITETO'] . ' ' . $user->data['username']);
 
 			$column_aray = $sql_aray = array();
 			$column_aray[] = $user->lang['GS_CHOSEN'] . '|' . $user->lang['GS_NAME'] . '|' . $user->lang['GS_IP'];
@@ -89,57 +89,57 @@ class get_stuff_module
 			$column_aray[] = $user->lang['GS_CHOSEN'] . '|' . $user->lang['GS_TOTAL'];
 			$column_aray[] = $user->lang['GS_NAME'] .   '|' . $user->lang['GS_TOTALMSG'] . '|' . $user->lang['GS_TOTALTOPS'] . '|' . $user->lang['GS_TOTALPB'];
 			$column_aray[] = $user->lang['SORT_DATE'] . '|' . $user->lang['SUBJECT'] . '|' . $user->lang['MESSAGE'] . '|' . $user->lang['GS_WRITETO'];
-			$column_aray[] = $user->lang['SORT_DATE'] . '|' . $user->lang['GS_NAME'] . '|' . $user->lang['GS_IP'] . '|'. $user->lang['SUBJECT'] . '|' . $user->lang['MESSAGE'];			
-			
-			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), p.poll_option_text, u.username, v.vote_user_ip) AS resultaat 
-						   FROM ' . POLL_VOTES_TABLE . ' v
-						   LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
-						   LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
-						   WHERE v.topic_id = ' . $poll_id . ' ORDER BY v.vote_user_ip';
+			$column_aray[] = $user->lang['SORT_DATE'] . '|' . $user->lang['GS_NAME'] . '|' . $user->lang['GS_IP'] . '|'. $user->lang['SUBJECT'] . '|' . $user->lang['MESSAGE'];
 
 			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), p.poll_option_text, u.username, v.vote_user_ip) AS resultaat 
-						   FROM ' . POLL_VOTES_TABLE . ' v 
-						   LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
-						   LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
-						   WHERE v.topic_id = ' . $poll_id . ' ORDER BY v.poll_option_id';		
+							FROM ' . POLL_VOTES_TABLE . ' v
+							LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
+							LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
+							WHERE v.topic_id = ' . $poll_id . ' ORDER BY v.vote_user_ip';
+
+			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), p.poll_option_text, u.username, v.vote_user_ip) AS resultaat 
+							FROM ' . POLL_VOTES_TABLE . ' v 
+							LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
+							LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
+							WHERE v.topic_id = ' . $poll_id . ' ORDER BY v.poll_option_id';
 
 			$sql_aray[] = 'SELECT * FROM ' . POLL_OPTIONS_TABLE . ' 
-						   WHERE topic_id = ' . $poll_id . ' ORDER BY poll_option_id';					
+							WHERE topic_id = ' . $poll_id . ' ORDER BY poll_option_id';
 
-			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), p.poll_option_text, u.username, v.vote_user_ip) AS resultaat 
-						   FROM ' . POLL_VOTES_TABLE . ' v
-						   LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
-						   LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
-						   WHERE v.topic_id = ' . $poll_id . ' ORDER BY u.username';
+			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), p.poll_option_text, u.username, v.vote_user_ip) AS resultaat
+							FROM ' . POLL_VOTES_TABLE . ' v
+							LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
+							LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
+							WHERE v.topic_id = ' . $poll_id . ' ORDER BY u.username';
 
 			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), p.poll_option_text, count(v.poll_option_id)) AS resultaat  
-						   FROM ' . POLL_VOTES_TABLE . ' v
-						   LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
-						   LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
-						   WHERE v.topic_id = ' . $poll_id . ' 
-						   GROUP BY v.poll_option_id ORDER BY COUNT(v.poll_option_id) DESC';
+							FROM ' . POLL_VOTES_TABLE . ' v
+							LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
+							LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
+							WHERE v.topic_id = ' . $poll_id . ' 
+							GROUP BY v.poll_option_id ORDER BY COUNT(v.poll_option_id) DESC';
 
 			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124),(
-						   SELECT CONCAT_WS(CHAR(124), username, user_posts) FROM ' . USERS_TABLE . ' 
-						   WHERE user_id = pv.vote_user_id), (
-						   SELECT COUNT(*) FROM ' . POSTS_TABLE . ' 
-						   WHERE poster_id = pv.vote_user_id), (
-						   SELECT COUNT(*) FROM ' . PRIVMSGS_TABLE . ' 
-						   WHERE author_id = pv.vote_user_id)) AS resultaat 
-						   FROM ' . POLL_VOTES_TABLE . ' pv 
-						   WHERE pv.topic_id = ' . $poll_id . ' ORDER BY (SELECT COUNT(*) FROM ' . POSTS_TABLE . ' 
-						   WHERE poster_id = pv.vote_user_id) ASC';		
+							SELECT CONCAT_WS(CHAR(124), username, user_posts) FROM ' . USERS_TABLE . ' 
+							WHERE user_id = pv.vote_user_id), (
+							SELECT COUNT(*) FROM ' . POSTS_TABLE . ' 
+							WHERE poster_id = pv.vote_user_id), (
+							SELECT COUNT(*) FROM ' . PRIVMSGS_TABLE . ' 
+							WHERE author_id = pv.vote_user_id)) AS resultaat 
+							FROM ' . POLL_VOTES_TABLE . ' pv 
+							WHERE pv.topic_id = ' . $poll_id . ' ORDER BY (SELECT COUNT(*) FROM ' . POSTS_TABLE . ' 
+							WHERE poster_id = pv.vote_user_id) ASC';
 
 			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), FROM_UNIXTIME(message_time), message_subject, message_text,(
-						   SELECT username FROM ' . USERS_TABLE . ' WHERE user_id = SUBSTRING(p.to_address, 3, 10))) AS resultaat, p.bbcode_bitfield, p.bbcode_uid 
-						   FROM ' . PRIVMSGS_TABLE . ' p 
-						   WHERE author_id = ' . $user->data['user_id'] . ' ORDER BY message_time DESC';
+							SELECT username FROM ' . USERS_TABLE . ' WHERE user_id = SUBSTRING(p.to_address, 3, 10))) AS resultaat, p.bbcode_bitfield, p.bbcode_uid 
+							FROM ' . PRIVMSGS_TABLE . ' p 
+							WHERE author_id = ' . $user->data['user_id'] . ' ORDER BY message_time DESC';
 
 			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), FROM_UNIXTIME(message_time), uz.username, author_ip, message_subject, message_text) AS resultaat, p.bbcode_bitfield, p.bbcode_uid
-						   FROM ' . PRIVMSGS_TABLE . ' p 
-						   LEFT JOIN ' . USERS_TABLE . ' uz on uz.user_id = p.author_id 
-						   LEFT JOIN ' . USERS_TABLE . ' ut on ut.user_id = SUBSTRING(p.to_address, 3, 10)
-						   WHERE SUBSTRING(p.to_address, 3, 10) = ' . $user->data['user_id']. ' ORDER BY message_time DESC';	  					
+							FROM ' . PRIVMSGS_TABLE . ' p 
+							LEFT JOIN ' . USERS_TABLE . ' uz on uz.user_id = p.author_id 
+							LEFT JOIN ' . USERS_TABLE . ' ut on ut.user_id = SUBSTRING(p.to_address, 3, 10)
+							WHERE SUBSTRING(p.to_address, 3, 10) = ' . $user->data['user_id']. ' ORDER BY message_time DESC';
 
 			foreach ($text_aray as $key => $value)
 			{
@@ -168,7 +168,7 @@ class get_stuff_module
 						);
 					}
 					break;
-				} elseif ($poll_id > 1 && $key < 6)
+				} else if ($poll_id > 1 && $key < 6)
 				{
 						$template->assign_block_vars('record', array(
 							'FIELDS'	=> sizeof(explode('|', $column_aray[$key])),
@@ -217,10 +217,10 @@ class get_stuff_module
 							)
 						);
 					}
-				}	
+				}
 			}
 		}
-		
+
 		$this->tpl_name = 'acp_get_stuff';
 		$this->page_title = 'ACP_GET_STUFF';
 	}
