@@ -1,5 +1,5 @@
 {
-    "name": "forumhulp/get_stuff",
+    "name": "forumhulp/getstuff",
     "type": "phpbb-extension",
     "description": "Shows a summary of user and polls.",
     "homepage": "http://forumhulp.com/",

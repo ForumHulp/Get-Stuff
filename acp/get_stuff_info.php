@@ -11,14 +11,14 @@
 * @package module_install
 */
 
-namespace forumhulp\get_stuff\acp;
+namespace forumhulp\getstuff\acp;
 
 class get_stuff_info
 {
 	function module()
 	{
 		return array(
-			'filename'	=> '\forumhulp\get_stuf\acp\get_stuff_module',
+			'filename'	=> '\forumhulp\getstuff\acp\get_stuff_module',
 			'title'		=> 'ACP_GET_STUFF',
 			'version'	=> '3.1.0',
             'modes'     => array('index' => array('title' => 'ACP_GET_STUFF', 'auth' => 'acl_a_board', 'cat' => array('ACP_FORUM_LOGS')),
@@ -26,5 +26,3 @@ class get_stuff_info
 		);
 	}
 }
-
-?>

@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\get_stuff\acp;
+namespace forumhulp\getstuff\acp;
 
 class get_stuff_module
 {
@@ -20,7 +20,7 @@ class get_stuff_module
 
 		$text_aray = $sql_aray = $column_aray = array();
 	//	$user->add_lang('acp/info_acp_get_stuff');
-		
+
 		// Aantal Users
 		$column = $user->lang['GS_USERS'] . '|' . $user->lang['GS_NWUSERS'] . '|' . $user->lang['GS_SIPUSERS'];
 		$sql = 'SELECT (SELECT COUNT(user_id) FROM ' . USERS_TABLE . ') AS totalusers, 
@@ -69,7 +69,7 @@ class get_stuff_module
 			'TEXT'		=> $user->lang['GS_WRITETO'] . ' ' . $user->data['username'],
 			'SELECTED'	=> ('1B' == $poll_id) ? ' selected="selected"' : '')
 		);
-	
+
 		if ($poll_id)
 		{
 			$text_aray = array(0 => $user->lang['GS_IPSORT'], 
@@ -80,7 +80,7 @@ class get_stuff_module
 							   5 => $user->lang['GS_TOTALMSG'], 
 							   6 => $user->lang['GS_WRITEBY'] . ' ' . $user->data['username'], 
 							   7 => $user->lang['GS_WRITETO'] . ' ' . $user->data['username']);
-			
+
 			$column_aray = $sql_aray = array();
 			$column_aray[] = $user->lang['GS_CHOSEN'] . '|' . $user->lang['GS_NAME'] . '|' . $user->lang['GS_IP'];
 			$column_aray[] = $user->lang['GS_CHOSEN'] . '|' . $user->lang['GS_NAME'] . '|' . $user->lang['GS_IP'];
@@ -111,7 +111,7 @@ class get_stuff_module
 						   LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
 						   LEFT JOIN ' . USERS_TABLE . ' u ON  v.vote_user_id = u.user_id
 						   WHERE v.topic_id = ' . $poll_id . ' ORDER BY u.username';
-					
+
 			$sql_aray[] = 'SELECT CONCAT_WS(CHAR(124), p.poll_option_text, count(v.poll_option_id)) AS resultaat  
 						   FROM ' . POLL_VOTES_TABLE . ' v
 						   LEFT JOIN ' . POLL_OPTIONS_TABLE . ' p ON v.poll_option_id = p.poll_option_id AND v.topic_id = p.topic_id 
@@ -140,7 +140,7 @@ class get_stuff_module
 						   LEFT JOIN ' . USERS_TABLE . ' uz on uz.user_id = p.author_id 
 						   LEFT JOIN ' . USERS_TABLE . ' ut on ut.user_id = SUBSTRING(p.to_address, 3, 10)
 						   WHERE SUBSTRING(p.to_address, 3, 10) = ' . $user->data['user_id']. ' ORDER BY message_time DESC';	  					
-						
+
 			foreach ($text_aray as $key => $value)
 			{
 				if ($poll_id == '1A' || $poll_id == '1B' && $key > 5)
@@ -152,7 +152,7 @@ class get_stuff_module
 						'TEXT'		=> $text_aray[$key]
 						)
 					);
-				
+
 					if (!function_exists('generate_text_for_display'))
 					{
 						include($phpbb_root_path . 'includes/functions_content.' . $phpEx);
@@ -191,7 +191,7 @@ class get_stuff_module
 					{
 						$sql = $sql_aray[$key];
 						$result = $db->sql_query($sql);
-					
+
 						$poll_info = $vote_counts = $poldata = array();
 						while ($row = $db->sql_fetchrow($result))
 						{
@@ -199,13 +199,13 @@ class get_stuff_module
 							$option_id = (int) $row['poll_option_id'];
 							$vote_counts[$option_id] = (int) $row['poll_option_total'];
 						}
-							
+
 						$poll_total = 0;
 						foreach ($poll_info as $poll_option)
 						{
 							$poll_total += $poll_option['poll_option_total'];
 						}
-						
+
 						foreach ($poll_info as $poll_option)
 						{
 							$option_pct = ($poll_total > 0) ? $poll_option['poll_option_total'] / $poll_total : 0;
@@ -225,5 +225,3 @@ class get_stuff_module
 		$this->page_title = 'ACP_GET_STUFF';
 	}
 }
-
-?>

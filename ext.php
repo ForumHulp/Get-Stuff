@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\get_stuff;
+namespace forumhulp\getstuff;
 
 /**
 * Main extension class for this extension.
