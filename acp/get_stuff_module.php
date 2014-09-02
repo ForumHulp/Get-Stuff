@@ -43,7 +43,7 @@ class get_stuff_module
 			'FIELDS'	=> $row['totalusers'] . '</td><td  valign="top">' . str_replace('<br />,' , '<br />',
 							$row['newuser']) . '</td><td  valign="top">' . str_replace('<br />,' , '<br />', $row['usersameip'])
 			)
-		);		
+		);
 
 		$poll_txt = array();
 		$poll_id = request_var('poll', '');
