@@ -2,6 +2,7 @@ Get-Stuff
 =========
 
 Get Stuff shows a summary of users who have signed in the last two days. Users with duplicate IP addresses are always in focus. 
+
 [![Build Status](https://travis-ci.org/ForumHulp/Get-Stuff.svg?branch=master)](https://travis-ci.org/ForumHulp/Get-Stuff)
 
 In the dropdownbox, choose one of the existing polls on your forum and Get Stuff shows four tables sorted in different ways.
