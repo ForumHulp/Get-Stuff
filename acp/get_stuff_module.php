@@ -242,7 +242,7 @@ class get_stuff_module
 						{
 							$sql = $sql_aray[$key];
 							$result = $db->sql_query($sql);
-	
+
 							$poll_info = $vote_counts = $poldata = array();
 							while ($row = $db->sql_fetchrow($result))
 							{
