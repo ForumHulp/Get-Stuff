@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\getstuff\migration;
+namespace forumhulp\getstuff\migrations;
 
 class install_getstuff extends \phpbb\db\migration\migration
 {
